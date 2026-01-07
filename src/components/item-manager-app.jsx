@@ -34,9 +34,22 @@ function ItemManager() {
       setErrorMsg("Item name must not be empty");
       return;
     }
+    const isDuplicate = items.some(item => item.name === name);
+    if (isDuplicate) {
+      setErrorMsg("Item name must not be duplicated");
+      return;
+    }
     setErrorMsg("");
 
-    if (!price) return;
+    if (!category) {
+      setErrorMsg("Please select a category");
+      return;
+    }
+
+    if (!price || parseFloat(price) < 0) {
+      setErrorMsg("Price must not be less than 0 ");
+      return;
+    }
 
     const newId = items.length > 0 ? Math.max(...items.map(item => item.id)) + 1 : 1;
     const newItem = {
@@ -50,11 +63,16 @@ function ItemManager() {
 
     itemName.current.value = "";
     setPrice("");
-    setCategory("Stationary");
+    setCategory("");
   };
 
   const deleteItem = (id) => {
-    setItems(items.filter(item => item.id !== id));
+    const updatedItems = items.filter(item => item.id !== id);
+    const reindexedItems = updatedItems.map((item, index) => ({
+      ...item,
+      id: index + 1
+    }));
+    setItems(reindexedItems);
   };
 
   return (
@@ -107,6 +125,7 @@ function ItemManager() {
                   onChange={(e) => setCategory(e.target.value)}
                   id="input-category"
                 >
+                  <option value="" disabled>Select Category</option>
                   <option value="Stationary">Stationary</option>
                   <option value="Kitchenware">Kitchenware</option>
                   <option value="Appliance">Appliance</option>
