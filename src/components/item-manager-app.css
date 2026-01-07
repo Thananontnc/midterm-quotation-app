@@ -1,21 +1,90 @@
 :root {
   font-family: Arial, Helvetica, sans-serif;
-  padding-left: 20px; /* Header alignment */
+  padding: 20px;
+}
+
+/* Header */
+#h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Data Area */
+#data-area {
+  margin-top: 20px;
 }
 
 /* Table basic style */
 .item-table {
   border-collapse: collapse;
   text-align: left;
+  width: 100%;
+}
+
+.item-table th {
+  font-weight: bold;
+  padding: 10px;
+}
+
+.item-table td {
+  padding: 10px;
+  vertical-align: middle;
 }
 
 .item-table th,
 .item-table td {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #ccc;
 }
 
-/* Header */
-#h1 {
-  font-size: 1.25rem;
-  font-weight: 600;
+/* Column specific alignment */
+#col-item-category,
+#col-item-action {
+  text-align: center;
+}
+
+/* Align the content of the category and action columns in the body */
+.item-table td:nth-child(3),
+.item-table td:nth-child(5) {
+  text-align: center;
+}
+
+/* Input Styles */
+input[type="text"],
+input[type="number"],
+select {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 90%;
+}
+
+/* Add Button */
+#btn-add {
+  background-color: #3b82f6;
+  /* Blue color */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#btn-add:hover {
+  background-color: #2563eb;
+}
+
+.item-action img {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  filter: invert(21%) sepia(95%) saturate(7432%) hue-rotate(358deg) brightness(102%) contrast(118%);
+}
+
+/* Error Message */
+#error-message {
+  color: red;
+  margin-top: 10px;
+  font-size: 0.9rem;
 }
